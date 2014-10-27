@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  
+    <servlet>
+        <servlet-name>HOME_SERVLET</servlet-name>
+        <servlet-class>com.pixel.line.servlet.Home</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HOME_SERVLET</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ADMIN_SERVLET</servlet-name>
+        <servlet-class>com.pixel.line.servlet.Admin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ADMIN_SERVLET</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <!-- /home is accessible for all but must be authenticated -->
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/home</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>*</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <!-- /admin is only accessible for admins -->
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/admin</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+</web-app>
